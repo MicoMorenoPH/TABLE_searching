@@ -1,0 +1,8 @@
+$(document).on('keyup', '#txtSearch', function (e) {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    console.log = val;
+    $('#dtl tr').show().filter(function () {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});
