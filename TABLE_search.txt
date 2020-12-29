@@ -16,9 +16,9 @@ $(document).on('keypress', '#txtFindItem', function (e) {
         table = document.getElementById("dtl");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            crow = tr[i].getElementsByTagName("td")[1];
-            if (crow.innerText != "crow") {
+            td = tr[i].getElementsByTagName("td")[0]; //GIVEN MATCH
+            crow = tr[i].getElementsByTagName("td")[1]; //GET KEY FOR HEADER
+            if (crow.innerText != "crow") { //AVAOID GETTING HEADER
                 ckey = tr[i].getElementsByTagName("td")[11];
             }
 
@@ -27,7 +27,7 @@ $(document).on('keypress', '#txtFindItem', function (e) {
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
                     if (crow.innerText != "crow") {
-                        tr[ckey.innerText].style.display = "";
+                        tr[ckey.innerText].style.display = ""; //SHOW HEADER
                     }
                 } else {
                     tr[i].style.display = "none";
