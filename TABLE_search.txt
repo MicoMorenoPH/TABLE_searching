@@ -6,3 +6,33 @@ $(document).on('keyup', '#txtSearch', function (e) {
         return !~text.indexOf(val);
     }).hide();
 });
+
+//SEARCH WITH SUPPLIER AND LOT NUMBER
+$(document).on('keypress', '#txtFindItem', function (e) {
+    if (e.which == 13) {
+        var input, filter, table, tr, td, i = 0, txtValue,crow,ckey;
+        input =$(this).val();
+        filter = input.toUpperCase();
+        table = document.getElementById("dtl");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            crow = tr[i].getElementsByTagName("td")[1];
+            if (crow.innerText != "crow") {
+                ckey = tr[i].getElementsByTagName("td")[11];
+            }
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    if (crow.innerText != "crow") {
+                        tr[ckey.innerText].style.display = "";
+                    }
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+});
